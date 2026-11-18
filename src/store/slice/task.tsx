@@ -2,8 +2,6 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import uuid from 'react-native-uuid';
 import { TaskData } from "../../types";
 
-// import { mockTasks } from "./mockdata";
-
 export type TaskType = {
     data: TaskData[];
     isLoading: boolean;

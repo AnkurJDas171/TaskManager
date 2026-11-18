@@ -50,6 +50,12 @@ A task manager app for iOS and Android, built with Expo (SDK 55), React Native, 
 
    If your phone can't reach the dev server (for example on a restricted network), start it with a tunnel: `npx expo start --tunnel`.
 
+## Sample data (optional)
+
+The app starts with an empty task list. To fill it with sample tasks from `src/store/slice/mockdata`, uncomment the `// Add sample data.` loop in `src/servece/storage.ts`.
+
+The tasks are only inserted the first time the database is created. If you've already run the app, delete it from the device or simulator (or clear its data) and open it again to load them.
+
 ## Useful commands
 
 | Command | Description |
@@ -94,28 +100,25 @@ npx expo run:ios       # requires Xcode
 npx expo run:android   # requires Android Studio
 ```
 
-Or build in the cloud with EAS:
-
-```bash
-npx eas-cli@latest build --profile development --platform ios|android
-```
-
-The `ios/` and `android/` folders are generated. Don't edit them by hand; put native configuration in `app.json`.
-
 ## Project structure
 
 ```
-App.tsx              # Root component: Redux provider and navigation stack
-index.ts             # Entry point
+App.tsx                  # Root component: SQLite provider, Redux provider and navigation stack
+index.ts                 # Entry point
 src/
-  components/        # Reusable UI components
-  hooks/             # Custom hooks (for example, filtered task list)
-  screens/           # TaskListScreen, TaskFormScreen
-  store/             # Redux store and slices (tasks, filters)
-  test/              # Shared test helpers
-  types/             # Shared TypeScript types
-  **/__tests__/      # Tests, next to the code they cover
-assets/              # App icons and splash images
+  components/            # Reusable UI components (task row, task list, search, filter and options menus)
+  hooks/                 # Custom hooks (useFilteredList: status, priority and search filtering)
+  screens/               # TaskListScreen, TaskFormScreen
+  servece/
+    storage.ts           # SQLite schema setup and migrations
+    backgroundTask.ts    # Loads tasks from SQLite and syncs Redux changes back to it
+  store/
+    index.tsx            # Redux store
+    slice/               # Slices (tasks, filters) and sample data (mockdata.ts)
+  test/                  # Shared test helpers
+  types/                 # Shared TypeScript types
+  **/__tests__/          # Tests, next to the code they cover
+assets/                  # App icons and splash images
 ```
 
 ## Troubleshooting

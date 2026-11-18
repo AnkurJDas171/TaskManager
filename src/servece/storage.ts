@@ -24,7 +24,7 @@ const setupDatabase = async (db: SQLiteDatabase) => {
     );
   `);
 
-  // Seed the sample tasks once, on first install only.
+  // Add sample data.
   // for (const task of mockTasks) {
   //   await db.runAsync(
   //     'INSERT OR IGNORE INTO tasks (id, title, description, priority, dueDate, isCompleted) VALUES (?, ?, ?, ?, ?, ?)',
