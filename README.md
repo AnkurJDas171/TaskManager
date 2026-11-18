@@ -126,4 +126,3 @@ assets/                  # App icons and splash images
 - **The app is stuck on an old version or behaves strangely:** restart with `npx expo start --clear`.
 - **Expo Go says the project is incompatible:** update Expo Go to a version that supports SDK 55.
 - **The Android emulator isn't detected:** make sure it's running before you press `a`, and that `adb devices` lists it.
-- **Web:** `npm run web` isn't set up yet. It needs `react-dom` and `react-native-web` (`npx expo install react-dom react-native-web`).
