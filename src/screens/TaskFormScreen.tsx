@@ -159,9 +159,10 @@ const TaskFormScreen = ({ navigation, route }: TaskFormScreenType) => {
 const styles = StyleSheet.create({
     container: {
         alignItems: "center",
-        justifyContent: "center",
+        justifyContent: "flex-start",
         backgroundColor: "#fff",
         paddingHorizontal: 20,
+        paddingTop: 40
     },
     textInput: {
         width: '100%',
@@ -196,11 +197,11 @@ const styles = StyleSheet.create({
     },
     saveButton: {
         paddingVertical: 15,
-        paddingHorizontal: 25,
+        paddingHorizontal: 50,
         fontSize: 20,
         backgroundColor: '#2457d7',
         color: '#fff',
-        borderRadius: 20
+        borderRadius: 50
     },
     textInputContainer: {
         width: '100%',

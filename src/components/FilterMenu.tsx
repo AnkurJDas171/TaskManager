@@ -49,6 +49,8 @@ const FilterMenu = () => {
                 key={option.label}
                 onPress={() => handleSelect(option)}
                 style={[styles.menuItem, selected && styles.menuItemSelected]}
+                role="checkbox"
+                aria-checked={selected}
             >
                 <Text style={[styles.menuText, selected && styles.menuTextSelected]}>{option.label}</Text>
                 {selected && <Icon name={'check'} size={16} color={'#2a0fd7'}/>}
@@ -58,7 +60,13 @@ const FilterMenu = () => {
 
     return (
         <View style={styles.container}>
-            <Pressable onPress={() => setIsOpen(prev => !prev)} hitSlop={10}>
+            <Pressable
+                onPress={() => setIsOpen(prev => !prev)}
+                hitSlop={10}
+                role="button"
+                aria-label="Filter tasks"
+                aria-expanded={isOpen}
+            >
                 <Icon name={'menu'} size={22}/>
             </Pressable>
             {isOpen && (

@@ -34,6 +34,9 @@ const EllipsisMenu = ({id, navigation}: EllipsisMenuProps) => {
             <Pressable
                 onPress={handleToggleMenu}
                 style={styles.verticalMenu}
+                role="button"
+                aria-label="Task options"
+                aria-expanded={isOpen}
             >
                 <Icon name={'ellipsis-menu'} size={22}/>
             </Pressable>

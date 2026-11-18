@@ -15,7 +15,7 @@ const AddNewTask = ({navigation}: AddNewTaskType) => {
     }
 
     return (
-        <Pressable onPress={handlePress}>
+        <Pressable onPress={handlePress} role="button" aria-label="Add task">
             <View style={styles.addButton}>
                 <Icon name={'add'} size={30} color={'#fff'}/>
             </View>

@@ -1,7 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import uuid from 'react-native-uuid';
 import { TaskData } from "../../types";
-import { mockTasks } from "./mockdata";
+
+// import { mockTasks } from "./mockdata";
 
 export type TaskType = {
     data: TaskData[];
@@ -10,8 +11,8 @@ export type TaskType = {
 }
 
 const initialState: TaskType = {
-    data: mockTasks, //[],
-    isLoading: false,
+    data: [],
+    isLoading: true,
     error: false
 };
 
@@ -19,8 +20,10 @@ const Task = createSlice({
     name: 'task',
     initialState: initialState,
     reducers: {
-        syncTask: (_, actions) => {
-            return actions.payload;
+        syncTask: (state, actions: PayloadAction<TaskData[]>) => {
+            state.data = actions.payload;
+            state.isLoading = false;
+            state.error = false;
         },
         addTask: (state, actions: PayloadAction<Omit<TaskData, 'id'>>) => {
             state.data.push({

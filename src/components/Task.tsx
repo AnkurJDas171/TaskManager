@@ -29,6 +29,9 @@ const Task = ({ id, title, description, priority, dueDate, isCompleted, navigati
             <Pressable 
                 onPressOut={handlePress}
                 style={styles.radioButtonContainer}
+                role="checkbox"
+                aria-checked={isCompleted}
+                aria-label={title}
             >
                 <View 
                     style={[

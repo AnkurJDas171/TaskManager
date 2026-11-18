@@ -57,11 +57,33 @@ A task manager app for iOS and Android, built with Expo (SDK 55), React Native, 
 | `npm start` | Start the Expo dev server |
 | `npm run ios` | Start the dev server and open the iOS Simulator |
 | `npm run android` | Start the dev server and open the Android Emulator |
+| `npm test` | Run the test suite |
 | `npm run lint` | Run ESLint |
 | `npx tsc --noEmit` | Type-check the project |
 | `npx expo start --clear` | Start the dev server with the bundler cache cleared |
 
 To add a dependency, use `npx expo install <package>` instead of `npm install <package>`. It picks the version that matches the Expo SDK.
+
+## Running tests
+
+The tests use [Jest](https://jestjs.io) with the `jest-expo` preset and [React Native Testing Library](https://callstack.github.io/react-native-testing-library/). They run in Node, so no device or simulator is needed. React Native Testing Library 14 requires Node.js 22.13 or newer.
+
+```bash
+npm test                     # run all tests once
+npx jest --watch             # rerun tests for changed files as you edit
+npx jest TaskFormScreen      # run test files whose path matches a pattern
+```
+
+| Test file | What it covers |
+| --- | --- |
+| `src/store/slice/__tests__/task.test.ts` | Creating, updating (including status changes) and deleting tasks in the Redux slice |
+| `src/hooks/__tests__/useFilteredList.test.tsx` | Filtering by status and priority, fuzzy search, and combinations of these |
+| `src/components/__tests__/Task.test.tsx` | Toggling a task's status, plus editing and deleting from the options menu |
+| `src/components/__tests__/Search.test.tsx` | Debounced search input and the priority and status filter menu |
+| `src/screens/__tests__/TaskFormScreen.test.tsx` | Creating a task through the form, required-field validation, editing a task |
+| `src/screens/__tests__/TaskListScreen.test.tsx` | The main screen end to end: listing, searching, filtering, toggling status, add button |
+
+Shared helpers live in `src/test/utils.tsx`. `renderWithStore` renders a component with a fresh Redux store that already holds sample tasks.
 
 ## Development builds (optional)
 
@@ -90,7 +112,9 @@ src/
   hooks/             # Custom hooks (for example, filtered task list)
   screens/           # TaskListScreen, TaskFormScreen
   store/             # Redux store and slices (tasks, filters)
+  test/              # Shared test helpers
   types/             # Shared TypeScript types
+  **/__tests__/      # Tests, next to the code they cover
 assets/              # App icons and splash images
 ```
 

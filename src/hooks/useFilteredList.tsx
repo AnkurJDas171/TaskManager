@@ -8,7 +8,7 @@ const fuzzyMatch = (data: TaskData[], searchText: string): TaskData[] => {
     const fuse = new Fuse(data, {
         keys: [ 'title' ],
         includeScore: false,
-        threshold: 0.6
+        threshold: 0.4
     });
     return fuse.search(searchText).map(result => result.item);
 }
